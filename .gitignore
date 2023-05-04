@@ -3,5 +3,8 @@ logs/*.log
 dist
 
 .env
-yarn.lock
+.idea/
 config.json
+yarn.lock
+package-lock.json
+yarn-error.log
