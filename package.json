@@ -1,13 +1,14 @@
 {
   "name": "mine-game-backend",
   "version": "1.0.0",
-  "author": "gently039@gmail.com",
+  "author": "webgently",
   "description": "The server for the mine game frontend",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/serve.ts",
     "build": "esbuild src/serve.ts --platform=node --bundle --minify --outfile=./dist/serve.js ",
-    "dev": "ts-node -r tsconfig-paths/register ./src/serve.ts"
+    "dev": "ts-node -r tsconfig-paths/register ./src/serve.ts",
+    "prettier": "npx prettier --write ."
   },
   "license": "MIT",
   "dependencies": {
@@ -29,6 +30,7 @@
     "esbuild": "^0.17.18",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "prettier": "^2.8.8"
   }
 }
