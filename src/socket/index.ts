@@ -22,7 +22,7 @@ interface UserType {
 
 let users = {} as { [key: string]: UserType };
 
-const makeGridSystem = (gridCount: number, wicketCount: number) => {
+const makeGridSystem = async (gridCount: number, wicketCount: number) => {
   let minePlace: number[] = [];
   while (minePlace.length < wicketCount) {
     const ran = random.intBetween(0, gridCount * gridCount - 1);
@@ -162,7 +162,7 @@ export const initSocket = (io: Server) => {
     });
 
     socket.on('playBet', async (req: any) => {
-      const system = makeGridSystem(req.gridCount, req.mineCount);
+      const system = await makeGridSystem(req.gridCount, req.mineCount);
       const result = await updateBalance(req.userid, 'playBet', req.betAmount);
       users[req.userid] = {
         ...users[req.userid],
