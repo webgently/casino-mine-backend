@@ -1,5 +1,5 @@
 import { Server, Socket } from 'socket.io';
-import { DHistories, DUsers } from '../model';
+import { DUsers } from '../model';
 import { currentTime, setlog } from '../helper';
 
 const ObjectId = require('mongodb').ObjectId;
@@ -19,8 +19,6 @@ interface UserType {
   turboList: number[];
   profitCalcList: number[];
 }
-
-let users = {} as { [key: string]: UserType };
 
 const makeGridSystem = async (gridCount: number, wicketCount: number) => {
   let minePlace: number[] = [];
@@ -71,6 +69,7 @@ const updateBalance = async (userid: string, status: string, amount: number) => 
     { _id: new ObjectId(userid) },
     { $set: { balance: calc, updated: currentTime() } }
   );
+
   if (!update) {
     return { status: false, message: 'User balance updating is failed', amount: null };
   }
@@ -120,6 +119,8 @@ const makeProfitCalcList = async (userid: string, gridCount: number, wicketCount
   };
 };
 
+let users = {} as { [key: string]: UserType };
+
 export const initSocket = (io: Server) => {
   io.on('connection', async (socket: Socket) => {
     console.log('new User connected:' + socket.id);
@@ -147,7 +148,7 @@ export const initSocket = (io: Server) => {
 
     socket.on('setProfitCalcList', async (req: any) => {
       const result = await makeProfitCalcList(req.userid, req.gridCount, req.mineCount);
-
+      
       if (result.status) {
         users[req.userid] = {
           ...users[req.userid],
@@ -164,45 +165,34 @@ export const initSocket = (io: Server) => {
     socket.on('playBet', async (req: any) => {
       const system = await makeGridSystem(req.gridCount, req.mineCount);
       const result = await updateBalance(req.userid, 'playBet', req.betAmount);
-      users[req.userid] = {
-        ...users[req.userid],
-        balance: result.amount,
-        betAmount: req.betAmount,
-        mineCount: req.mineCount,
-        minePlace: system.minePlace,
-        gridSystem: system.gridSystem,
-        turboMode: req.turboMode,
-        turboList: req.turboList,
-      };
 
-      if (req.turboMode) {
-        const count = users[req.userid].turboList.filter((item) => users[req.userid].gridSystem[item]).length;
-        if (count > 0) { 
-          socket.emit(`playBet-${req.userid}`, {
-            balance: result.amount,
-            turboMode: req.turboMode,
-            gridSystem: system.gridSystem,
-          });
-        } else {
-          const result1 = await updateBalance(req.userid, 'cashOut', req.betAmount * req.profitValue);
-          socket.emit(`playBet-${req.userid}`, {
-            balance: result1.amount,
-            turboMode: req.turboMode,
-            gridSystem: system.gridSystem,
-          });
-        }
-        socket.emit(`playBet-${req.userid}`, {
+      if (result.status) {
+        users[req.userid] = {
+          ...users[req.userid],
           balance: result.amount,
-          turboMode: req.turboMode,
+          betAmount: req.betAmount,
+          mineCount: req.mineCount,
+          minePlace: system.minePlace,
           gridSystem: system.gridSystem,
-        });
-      } else {
-        if (result.status) {
-          socket.emit(`playBet-${req.userid}`, { balance: result.amount, turboMode: req.turboMode });
+          turboMode: req.turboMode,
+          turboList: req.turboList,
+        };
+
+        if (req.turboMode) {
+          const count = users[req.userid].turboList.filter((item) => users[req.userid].gridSystem[item]).length;
+          const balance = count > 0 ? result.amount : (await updateBalance(req.userid, 'cashOut', req.betAmount * req.profitValue)).amount;
+          socket.emit(`playBet-${req.userid}`, {
+            balance: balance,
+            turboMode: req.turboMode,
+            mine: count > 0 ? true : false,
+            gridSystem: system.gridSystem,
+          });
         } else {
-          setlog('playBet error', `${req.userid}=>${result.message}`);
-          socket.emit(`error-${req.userid}`, result.message);
+          socket.emit(`playBet-${req.userid}`, { balance: result.amount, turboMode: req.turboMode });
         }
+      } else {
+        setlog('playBet error', `${req.userid}=>${result.message}`);
+        socket.emit(`error-${req.userid}`, result.message);
       }
     });
 
@@ -221,7 +211,7 @@ export const initSocket = (io: Server) => {
       }
     });
 
-    socket.on('cashOut', async (req: any)=>{
+    socket.on('cashOut', async (req: any) => {
       if (users[req.userid]) { 
         const result = await updateBalance(req.userid, 'cashOut', req.profitValue * users[req.userid].betAmount);
         users[req.userid] = {
