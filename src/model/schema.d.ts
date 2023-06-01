@@ -1,7 +1,8 @@
 declare interface SchemaUser {
+  _id: string;
   name: string;
+  avatar: string;
   balance: number;
-  img: string;
   updated: number;
   created: number;
 }

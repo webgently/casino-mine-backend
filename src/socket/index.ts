@@ -1,15 +1,16 @@
 import { Server, Socket } from 'socket.io';
+import uniqid from 'uniqid';
+import axios from 'axios';
 import { DUsers } from '../model';
 import { currentTime, setlog } from '../helper';
 
-const ObjectId = require('mongodb').ObjectId;
 const random = require('random-seed').create();
 
 interface UserType {
   socketId: string;
   userid: string;
-  name: string;
-  img: string;
+  username: string;
+  avatar: string;
   balance: number;
   betAmount: number;
   mineCount: number;
@@ -18,6 +19,36 @@ interface UserType {
   turboMode: boolean;
   turboList: number[];
   profitCalcList: number[];
+  apiToken: string;
+  loading: boolean;
+}
+
+const register = async (user: any) => { 
+  try { 
+    const oldUser = await DUsers.findOne({ _id: user.userid });
+    const now = currentTime();
+    if (oldUser) {
+      const update = await DUsers.updateOne({ _id: user.userid }, {
+        $set: {
+          balance: user.balance,
+        }
+      });
+      return update ? true : false;
+    } else { 
+      const insert = await DUsers.insertOne({
+        _id: user.userid,
+        name: user.username,
+        avatar: user.avatar,
+        balance: user.balance,
+        updated: now,
+        created: now,
+      });
+      return insert ? true : false;
+    }
+  } catch (error) { 
+    console.log('register error : ', error.message);
+    setlog('register error', error.message);
+  }
 }
 
 const makeGridSystem = async (gridCount: number, wicketCount: number) => {
@@ -47,13 +78,22 @@ const updateBalance = async (userid: string, status: string, amount: number) => 
     };
   }
 
-  const user = await DUsers.findOne({ _id: new ObjectId(userid) });
+  const user = users[userid].apiToken ? await DUsers.findOne({ _id: userid }) : users[userid];
 
   if (!user) {
     return { status: false, message: 'Undefined user', amount: null };
   }
 
-  let calc:number = user.balance;
+  let calc: number = user.balance;
+
+  if (user.balance - amount < 0) { 
+    return {
+      status: false,
+      message: 'Insufficient your balance',
+      amount: null
+    };
+  }
+
   switch (status) {
     case 'playBet':
       calc = calc - amount;
@@ -65,14 +105,16 @@ const updateBalance = async (userid: string, status: string, amount: number) => 
       calc = calc + amount;
   }
 
-  const update = await DUsers.updateOne(
-    { _id: new ObjectId(userid) },
-    { $set: { balance: calc, updated: currentTime() } }
-  );
-
-  if (!update) {
-    return { status: false, message: 'User balance updating is failed', amount: null };
-  }
+  if (users[userid].apiToken) {
+    const update = await DUsers.updateOne(
+      { _id: userid },
+      { $set: { balance: calc, updated: currentTime() } }
+    );
+  
+    if (!update) {
+      return { status: false, message: 'User balance updating is failed', amount: null };
+    }
+  } 
 
   return { status: true, message: 'Successfully', amount: calc };
 };
@@ -119,36 +161,146 @@ const makeProfitCalcList = async (userid: string, gridCount: number, wicketCount
   };
 };
 
+const refundBalance = async (userid: string) => { 
+  const update = await DUsers.updateOne(
+    { _id: userid },
+    { $set: { balance: 0, updated: currentTime() } }
+  );
+  return update ? true : false;
+}
+
+const getBalance = async (userid: string) => { 
+  if (!userid) {
+    return {
+      status: false,
+      message: 'Undefined user',
+      amount: 0
+    };
+  }
+  const getBalance = await DUsers.findOne({ _id: userid });
+  if (getBalance) {
+    return {
+      status: true,
+      message: 'Successfully',
+      amount: getBalance.balance
+    };
+  } else { 
+    return {
+      status: false,
+      message: 'Failed get user balance',
+      amount: 0
+    };
+  }
+}
+
 let users = {} as { [key: string]: UserType };
 
 export const initSocket = (io: Server) => {
   io.on('connection', async (socket: Socket) => {
     console.log('new User connected:' + socket.id);
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', async () => {
       console.log('socket disconnected ' + socket.id);
+      const userid = Object.keys(users).filter((key: string) => users[key].socketId === socket.id)[0];
+      if (userid && users[userid].apiToken) {
+        const balance = await getBalance(userid);
+        if (balance.status) {
+          const getUserInfo = await axios.post(`http://annie.ihk.vipnps.vip/iGaming/igaming/credit`,
+            { userId: userid, balance: balance.amount, ptxid: uniqid() },
+            { headers: { 'Content-Type': 'application/json', gamecode: 'Mine', packageId: '4' } });
+          
+          if (getUserInfo.data.success) {
+            const result = await refundBalance(userid);
+            if (!result) {
+              setlog('refund update balance', `${userid}=> database error`);
+            }
+          } else {
+            setlog('refund error', `${userid}=> platform error`);
+          }
+        } else {
+          setlog('refund error', `${userid}=> ${balance.message}`);
+        }
+      }
+      delete users[userid];
     });
 
     socket.on('join', async (req: any) => {
-      users[req.userid] = {
-        socketId: socket.id,
-        userid: req.userid,
-        name: req.name,
-        img: req.img,
-        balance: req.balance,
-        betAmount: 0,
-        mineCount: 0,
-        minePlace: [],
-        gridSystem: [],
-        turboMode: false,
-        turboList: [],
-        profitCalcList: []
-      };
+      try {
+        if (req.token) { 
+          const getUserInfo = await axios.post(`http://annie.ihk.vipnps.vip/iGaming/igaming/getUserToken`, { token: req.token, ptxid: uniqid() });
+          if (getUserInfo.data.success) {
+            let user:any = getUserInfo.data.data;
+            if (!users[user.userId] || users[user.userId]?.balance < 0.1) {
+              const getBalance = await axios.post(
+                `http://annie.ihk.vipnps.vip/iGaming/igaming/debit`,
+                { userId: user.userId, token: user.userToken, ptxid:uniqid() },
+                { headers: { 'Content-Type': 'application/json', gamecode: 'Mine', packageId: '4' } },
+              )
+              if (getBalance.data) {
+                user.balance = getBalance.data.data.balance;
+                users[user.userId] = {
+                  socketId: socket.id,
+                  userid: user.userId,
+                  username: user.userName,
+                  avatar: user.avatar,
+                  balance: users[user.userId] ? Number(users[user.userId].balance) + Number(getBalance.data.data.balance) : Number(getBalance.data.data.balance),
+                  betAmount: 0,
+                  mineCount: 0,
+                  minePlace: [],
+                  gridSystem: [],
+                  turboMode: false,
+                  turboList: [],
+                  profitCalcList: [],
+                  apiToken: req.token,
+                  loading: false
+                }
+              } else { 
+                setlog('not found user balance from platform');
+              }
+            }
+            
+            const result = await register(users[user.userId]);
+            if (result) {
+              socket.emit(`join-${req.token}`, users[user.userId]);
+              if (users[user.userId].balance < 0.1) { 
+                socket.emit(`insufficient-${user.userId}`);
+                return;
+              }
+            } else { 
+              delete users[user.userId];
+              setlog('register error', `${user.userId}=> user register`);
+            }
+          } else { 
+            setlog('not found user from platform');
+          }
+        } else {
+          let user = uniqid();
+          users[user] = {
+            socketId: socket.id,
+            userid: user,
+            username: user,
+            avatar: user,
+            balance: 1000,
+            betAmount: 0,
+            mineCount: 0,
+            minePlace: [],
+            gridSystem: [],
+            turboMode: false,
+            turboList: [],
+            profitCalcList: [],
+            apiToken: '',
+            loading: false
+          }
+          socket.emit(`join-${req.token}`, users[user]);
+        }
+      } catch (err) { 
+        setlog('user join error');
+        console.log(err);
+      }
     });
 
     socket.on('setProfitCalcList', async (req: any) => {
       const result = await makeProfitCalcList(req.userid, req.gridCount, req.mineCount);
-      
       if (result.status) {
         users[req.userid] = {
           ...users[req.userid],
@@ -181,12 +333,45 @@ export const initSocket = (io: Server) => {
         if (req.turboMode) {
           const count = users[req.userid].turboList.filter((item) => users[req.userid].gridSystem[item]).length;
           const balance = count > 0 ? result.amount : (await updateBalance(req.userid, 'cashOut', req.betAmount * req.profitValue)).amount;
+          
+          users[req.userid] = {
+            ...users[req.userid],
+            balance: balance,
+          };
+
           socket.emit(`playBet-${req.userid}`, {
             balance: balance,
             turboMode: req.turboMode,
             mine: count > 0 ? true : false,
             gridSystem: system.gridSystem,
           });
+
+          if (users[req.userid].apiToken) { 
+            const options = {
+              method: 'POST',
+              url: 'http://annie.ihk.vipnps.vip/iGaming/igaming/orders',
+              headers: {'Content-Type': 'application/json', gamecode: 'Mine'},
+              data: {
+                ptxid: uniqid(),
+                iGamingOrders: [
+                  {
+                    packageId: 4,
+                    userId: req.userid,
+                    wonAmount: count > 0 ? "0" : String( req.betAmount * req.profitValue - req.betAmount),
+                    betAmount: String(req.betAmount),
+                    odds: count > 0 ? "0" : String(req.profitValue),
+                    status: count > 0 ? 0 : 1,
+                    timestamp: currentTime()
+                  }
+                ]
+              }
+            };
+            axios.request(options).then(function (response) {
+              console.log(response.data);
+            }).catch(function (error) {
+              console.error(error);
+            });
+          }
         } else {
           socket.emit(`playBet-${req.userid}`, { balance: result.amount, turboMode: req.turboMode });
         }
@@ -197,7 +382,7 @@ export const initSocket = (io: Server) => {
     });
 
     socket.on('cancelBet', async (req: any) => {
-      let result = await updateBalance(req.userid, 'cancelBet', req.betAmount);
+      const result = await updateBalance(req.userid, 'cancelBet', req.betAmount);
 
       if (result.status) {
         users[req.userid] = {
@@ -213,12 +398,38 @@ export const initSocket = (io: Server) => {
 
     socket.on('cashOut', async (req: any) => {
       if (users[req.userid]) { 
-        const result = await updateBalance(req.userid, 'cashOut', req.profitValue * users[req.userid].betAmount);
+        const result = await updateBalance(req.userid, 'cashOut', req.profitValue * req.betAmount);
         users[req.userid] = {
           ...users[req.userid],
           balance: result.amount
         };
         socket.emit(`cashOut-${req.userid}`, { balance: result.amount });
+        if (users[req.userid].apiToken) { 
+          const options = {
+            method: 'POST',
+            url: 'http://annie.ihk.vipnps.vip/iGaming/igaming/orders',
+            headers: {'Content-Type': 'application/json', gamecode: 'Mine'},
+            data: {
+              ptxid: uniqid(),
+              iGamingOrders: [
+                {
+                  packageId: 4,
+                  userId: req.userid,
+                  wonAmount: String(req.profitValue * req.betAmount - req.betAmount),
+                  betAmount: String(req.betAmount),
+                  odds: String(req.profitValue),
+                  status: 1,
+                  timestamp: currentTime()
+                }
+              ]
+            }
+          };
+          axios.request(options).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+        }
       } else {
         setlog('cashOut error', `${req.userid}=> Undefined user`);
         socket.emit(`error-${req.userid}`, 'Undefined user');
@@ -230,10 +441,68 @@ export const initSocket = (io: Server) => {
 
       if (result.status) {
         socket.emit(`checkMine-${req.userid}`, { mine: result.mine, index: result.index, minePlace: result.minePlace });
+        if (result.mine && users[req.userid].apiToken) { 
+          const options = {
+            method: 'POST',
+            url: 'http://annie.ihk.vipnps.vip/iGaming/igaming/orders',
+            headers: {'Content-Type': 'application/json', gamecode: 'Mine'},
+            data: {
+              ptxid: uniqid(),
+              iGamingOrders: [
+                {
+                  packageId: 4,
+                  userId: req.userid,
+                  wonAmount: "0",
+                  betAmount: String(req.betAmount),
+                  odds: "0",
+                  status: 0,
+                  timestamp: currentTime()
+                }
+              ]
+            }
+          };
+          axios.request(options).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+        }
       } else {
         setlog('checkMine error', `${req.userid}=>${result.message}`);
         socket.emit(`error-${req.userid}`, result.message);
       }
     });
+
+    socket.on('refund', async (req: any) => { 
+      if (users[req.userid]?.apiToken) {
+        const balance = await getBalance(req.userid);
+        
+        if (!users[req.userid]?.loading) {
+          users[req.userid].loading = true;
+          if (balance.status) {
+            const getUserInfo = await axios.post(`http://annie.ihk.vipnps.vip/iGaming/igaming/credit`,
+              { userId: req.userid, balance: balance.amount, ptxid: uniqid() },
+              { headers: { 'Content-Type': 'application/json', gamecode: 'Mine', packageId: '4' } });
+            if (getUserInfo.data.success) {
+              const result = await refundBalance(req.userid);
+              if (result) {
+                delete users[req.userid];
+                socket.emit(`refund-${req.userid}`)
+              } else {
+                setlog('refund update balance', `${req.userid}=> database error`);
+              }
+            } else {
+              setlog('refund error', `${req.userid}=> platform error`);
+            }
+          } else {
+            setlog('refund error', `${req.userid}=> ${balance.message}`);
+            socket.emit(`error-${req.userid}`, "Can't find the platform");
+          }
+        }
+      } else { 
+        delete users[req.userid];
+        socket.emit(`refund-${req.userid}`)
+      }
+    })
   });
 };

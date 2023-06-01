@@ -7,7 +7,6 @@ import { Server } from 'socket.io';
 import config from './config.json';
 import { setlog } from './helper';
 import { connect } from './model';
-import routers from './routers';
 import { initSocket } from './socket';
 
 process.on('uncaughtException', (error) => setlog('exception', error));
@@ -25,7 +24,6 @@ connect().then(async (loaded) => {
     app.use(bodyParser.json({ type: 'application/json' }));
     app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }));
     app.use(bodyParser.text({ type: 'text/html' }));
-    app.use('/api', routers);
     app.get('*', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
     const io = new Server(server, { cors: { origin: '*', methods: ['GET', 'POST'] } });
