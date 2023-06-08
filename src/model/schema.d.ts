@@ -14,8 +14,9 @@ declare interface SchemaGame {
 }
 
 declare interface SchemaHistory {
-  user_id: string;
+  userid: string;
   betAmount: number;
+  profit: number;
   profitAmount: number;
   date: number;
 }
