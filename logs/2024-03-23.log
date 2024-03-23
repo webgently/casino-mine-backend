@@ -1,0 +1,330 @@
+[02:43:23] mongodb-initialization
+	MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+	    at Timeout._onTimeout (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:567:30)
+	    at listOnTimeout (node:internal/timers:559:17)
+	    at processTimers (node:internal/timers:502:7)
+[02:43:23] connected to MongoDB
+[02:43:23] Started HTTP service on port 2083
+[02:48:00] mongodb-initialization
+	MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+	    at Timeout._onTimeout (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:567:30)
+	    at listOnTimeout (node:internal/timers:559:17)
+	    at processTimers (node:internal/timers:502:7)
+[02:48:00] connected to MongoDB
+[02:48:00] Started HTTP service on port 5000
+[02:48:06] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:48:06] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:54:06] mongodb-initialization
+	MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+	    at Timeout._onTimeout (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:567:30)
+	    at listOnTimeout (node:internal/timers:559:17)
+	    at processTimers (node:internal/timers:502:7)
+[02:54:06] connected to MongoDB
+[02:54:06] Started HTTP service on port 5000
+[02:54:06] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:54:06] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:54:47] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:54:53] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:54:55] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:54:57] playBet error
+	13y1960lu3hxtr0=>Insufficient your balance
+[02:56:05] mongodb-initialization
+	MongoServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+	    at Timeout._onTimeout (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:567:30)
+	    at listOnTimeout (node:internal/timers:559:17)
+	    at processTimers (node:internal/timers:502:7)
+[02:56:05] connected to MongoDB
+[02:56:05] Started HTTP service on port 5000
+[02:56:09] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:56:09] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:56:12] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:56:27] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:56:57] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:56:59] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:00] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:00] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:08] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:13] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:15] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:16] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:17] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:19] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:32] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:52] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[02:57:52] rejection
+	MongoTopologyClosedError: Topology is closed
+	    at processWaitQueue (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:857:42)
+	    at Topology.selectServer (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:577:5)
+	    at Topology.<anonymous> (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\sdam\topology.ts:243:17)
+	    at node:internal/util:360:7
+	    at new Promise (<anonymous>)
+	    at Topology.selectServerAsync (node:internal/util:346:12)
+	    at executeOperationAsync (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:151:33)
+	    at C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:30
+	    at maybeCallback (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\utils.ts:373:19)
+	    at executeOperation (C:\Users\Administrator\Documents\mine-game\mine-game-backend\node_modules\mongodb\src\operations\execute_operation.ts:79:23)
+[06:33:41] connected to MongoDB
+[06:33:42] Started HTTP service on port 5000
+[06:42:48] connected to MongoDB
+[06:42:48] Started HTTP service on port 5000
+[06:43:01] playBet error
+	13y14m0lu3q40el=>Insufficient your balance
+[06:43:23] playBet error
+	13y14m0lu3q4doi=>Insufficient your balance
+[06:59:47] connected to MongoDB
+[06:59:47] Started HTTP service on port 2083
+[07:01:57] connected to MongoDB
+[07:01:57] Started HTTP service on port 2083
